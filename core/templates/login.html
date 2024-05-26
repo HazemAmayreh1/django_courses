@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    {%load static%}
+    <link rel="stylesheet" href="{%static 'css/Login.css'%}">
+
+</head>
+<body>
+    <div class="hero">
+        <div class="loginContainer">
+            <form action="" method="POST" class="form"> 
+                {%csrf_token%}
+                <h2 class="title">Login</h2>
+                <div class="formGroup">
+                    <div class="inputBorder">
+                        <label for="username" class="insideLabel">Username</label>
+                        <input type="text" name="username" id="username" class="input">
+                    </div>
+                </div>
+                <div class="formGroup">
+                    <div class="inputBorder">
+                        <label for="password" class="insideLabel">Password</label>
+                        <input type="password" name="password" id="password" class="input">
+                    </div>
+                </div>
+                <button type="submit" class="submitButton">
+                    Login
+                </button>
+                <a href="/register" class="nav-link">I don't have an account</a>
+            </form>
+        </div>
+    </div>
+    
+</body>
+</html>

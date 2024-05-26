@@ -1,0 +1,33 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+}
+
+.container {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.course-header {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 15px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.course-img {
+  width: 100%;
+  height: auto;
+  max-height: 300px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.table {
+  margin-top: 20px;
+}
+

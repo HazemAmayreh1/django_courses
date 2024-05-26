@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up Form</title>
+    {%load static%}
+    <link rel="stylesheet" href="{%static 'css/register.css'%}">
+</head>
+<body>
+    <div class="hero">
+        <div class="container">
+            <form action="" method="POST" class="form">
+                {% csrf_token %}
+                <h2 class="title">Sign up</h2>
+                <div class="inputGroup">
+                    <div class="inputBorder">
+                        <label for="userName" class="insideLabel">Name</label>
+                        <input type="text" name="username" id="username" class="input">
+                    </div>
+                    <div class="inputBorder">
+                        <label for="email" class="insideLabel">Email</label>
+                        <input type="email" name="email" id="email" class="input">
+                    </div>
+                    <div class="inputBorder">
+                        <label for="password" class="insideLabel">Password</label>
+                        <input type="password" name="password" id="password" class="input">
+                    </div>
+                    <button type="submit" class="button">Register</button>
+                </div>
+                <a href="/login" class="nav-link">I Have in Account</a>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
