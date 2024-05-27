@@ -4,16 +4,18 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import *
 from django.db.models import Q
+from django.shortcuts import get_object_or_404, redirect
+
 def register(request):
     if request.method == 'POST':
         username = request.POST['username']
         email = request.POST['email']
         password = request.POST['password']
         if User.objects.filter(email=email).exists():
-            messages.info(request, 'Email Taken')
+            messages.info(request, 'email is already exists')
             return redirect('register')
         elif User.objects.filter(username=username).exists():
-            messages.info(request, 'Username Taken')
+            messages.info(request, 'Username is already exists ')
             return redirect('register')
         else:
             user = User.objects.create_user(username=username, email=email, password=password)
@@ -36,7 +38,7 @@ def login(request):
             auth.login(request, user)
             return redirect('/')
         else:
-            messages.info(request, 'Credentials Invalid')
+            messages.info(request, ' data Invalid')
             return redirect('login')
     else:
         return render(request, 'login.html')
@@ -56,30 +58,37 @@ def search(request):
     courses=Courses.objects.all()
     if request.method == 'POST':
         search_query = request.POST['search']
-        courses = Courses.objects.filter(Q(name__icontains=search_query))
+        courses = Courses.objects.filter(Q(name__icontains=search_query)|Q(instractor__icontains=search_query)|Q(code__icontains=search_query))
     return render(request,'search.html',{'courses':courses})
 
 @login_required(login_url='login')
-def addCourse(request,pk):
-    course = Courses.objects.get(code=pk)
-    student = Students.objects.get(user=request.user)
-    if studentsReg.objects.filter(course_id=course,student_id=student).exists():
+def addCourse(request, pk):
+    course = get_object_or_404(Courses, code=pk)
+    student = get_object_or_404(Students, user=request.user)
+    
+    if studentsReg.objects.filter(course_id=course, student_id=student).exists():
+        messages.info(request, 'You are already registered for this course.')
         return redirect(f'/course/{pk}')
     elif len(studentsReg.objects.filter(course_id=course)) >= course.capacity:
+        messages.info(request, 'This course is full.')
         return redirect(f'/course/{pk}')
     else:
         schedule_new_course = course.schedule_id.start_time
         if studentsReg.objects.filter(student_id=student, course_id__schedule_id__start_time=schedule_new_course).exists():
+            messages.info(request, 'You already have a course at this time.')
             return redirect(f'/course/{pk}')
         else:
             studentsReg.objects.create(course_id=course, student_id=student)
+            messages.success(request, 'You have successfully registered for the course.')
             return redirect(f'/course/{pk}')
+        
 @login_required(login_url='login')
 def deleteCourse(request,pk):
     course = Courses.objects.get(code=pk)
     student = Students.objects.get(user=request.user)
     studentsReg.objects.get(course_id=course,student_id=student).delete()
     return redirect(f'/course/{pk}')
+
 @login_required(login_url='login')
 def courseInfo(request,pk):
     course = Courses.objects.get(code=pk)
@@ -88,6 +97,7 @@ def courseInfo(request,pk):
     if studentsReg.objects.filter(course_id=course,student_id=student).exists():
         regesterd = True
     return render(request,'course-info.html',{'course':course,'registered':regesterd,'student_count':len(studentsReg.objects.filter(course_id=course))})
+
 @login_required(login_url='login')
 def collegeCourses(request,pk):
     college = Colleges.objects.get(id=pk)

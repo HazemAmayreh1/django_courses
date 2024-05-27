@@ -1,66 +1,65 @@
 input[type="text"] {
-  width: 40%; /* Smaller width for a neater look */
-  padding: 8px; /* Slightly reduced padding */
-  margin: 10px auto; /* Centered margin with less space */
-  display: block; /* Ensures the input is centered if the width is less than 100% */
-  border: 1px solid #bbb; /* Lighter border color */
+  width: 40%; 
+  padding: 8px; 
+  margin: 10px auto; 
+  display: block; 
+  border: 1px solid #bbb; 
   border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05); /* Subtle shadow for depth */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05); 
 }
 
 .card-header {
-  background-color: #f8f8f8; /* Lighter background for a modern look */
+  background-color: #f8f8f8; 
   color: #333;
-  padding: 8px; /* Slightly reduced padding for a tighter header */
-  font-size: 0.85rem; /* Smaller font size for conciseness */
+  padding: 8px; 
+  font-size: 0.85rem;
   text-align: center;
-  border-bottom: 1px solid #e0e0e0; /* Lighter border for a refined look */
+  border-bottom: 1px solid #e0e0e0; 
 }
 
 .card {
-  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Smoother transition for transform and shadow */
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; 
   border: none;
-  border-radius: 8px; /* Slightly reduced border-radius */
+  border-radius: 8px; 
   overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Reduced shadow intensity for subtlety */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
 }
 
 .card:hover {
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); /* Less intense hover shadow */
-  transform: translateY(-5px); /* Subtle lift effect */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); 
+  transform: translateY(-5px); 
 }
 
 .card-img-top {
-  height: 180px; /* Smaller image height for compactness */
+  height: 180px; 
   object-fit: cover;
-  border-top-left-radius: 8px; /* Match border-radius of the card */
+  border-top-left-radius: 8px; 
   border-top-right-radius: 8px;
 }
 
 .card-body {
-  padding: 15px; /* Slightly less padding for a tighter body */
+  padding: 15px; 
 }
 
 .card-title {
-  font-size: 1rem; /* Standardized font size */
-  color: #004085; /* Slightly darker shade for better readability */
-  margin-bottom: 10px; /* Consistent margin bottom */
+  font-size: 1rem; 
+  color: #004085; 
+  margin-bottom: 10px; 
 }
 
 .btn-info, .btn-success {
-  padding: 8px 12px; /* More proportional padding */
-  font-size: 0.75rem; /* Smaller button text */
-  margin-top: 5px; /* Reduced top margin */
-  border-radius: 4px; /* Smaller border-radius for buttons */
+  padding: 8px 12px; 
+  font-size: 0.75rem; 
+  margin-top: 5px; 
+  border-radius: 4px; 
 }
 
-/* Responsive Design Adjustments */
 @media (max-width: 768px) {
   .card-img-top {
-    height: 160px; /* Even smaller images on mobile devices */
+    height: 160px; 
   }
 
   input[type="text"] {
-    width: 80%; /* Wider input field on smaller screens */
+    width: 80%; 
   }
 }
